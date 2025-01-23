@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Books</title>
+  </head>
+  <body>
+    <h1>All Books</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Publish Year</th>
+          <th>Genre</th>
+          <th>Count</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(function(item) { %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.author %></td>
+          <td><%= item.publish_year %></td>
+          <td><%= item.genre %></td>
+          <td><%= item.count %></td>
+          <td>
+            <a href="/update/<%= item.id %>"><button>Edit</button></a>
+            <form action="/delete" method="POST" style="display: inline">
+              <input type="hidden" name="id" value="<%= item.id %>" />
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <a href="/create"><button>Add Book</button></a>
+    <a href="/">Back to Genres</a>
+  </body>
+</html>
